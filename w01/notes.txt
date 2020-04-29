@@ -1,4 +1,14 @@
 Week 01
 
+-Computers are stupid (pp 35)
+-Always update the title of the page
+
+Section tags fill the screen all the way across
+
+save to local storage with "localStorage.setItem(key, value)"
+retrieve the item saved by using "localStorage.getItem(key)"
+
+
+Questions
 Is it alright to turn in the weekly reading notes through the link to my portfolio? 
 If so, should I turn in a link to the eact file or the index file?
