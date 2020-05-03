@@ -1,17 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sophia Pearson's Portfolio for WDD 330</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Sophia Pearson's Portfolio for WDD 330</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Sophia Pearson's Week 02 Notes</h1>
-<h2>Notes</h2>
-<p>
-    
-    See the console for code examples.</p>
+    <h1>Sophia Pearson's Week 02 Notes</h1>
+    <h2>Notes</h2>
+    <p id = "noteBody">
+        Chapter 2
+        Pay attention to: Variables, Scope, converting/parsing, and template literals
 
-<button onclick="window.location.href = '../index.html'">Back to home index</button>
+        imagine bindings as tentacles rather than boxes
 
+        a binding name must not start with a digit
+        can include $ or _ but no other punctuation or special characters
+        don't forget not to use keywords as variable names:
+        "break case catch class const continue debugger default
+        delete do else enum export extends false finally for
+        function if implements import interface in instanceof let
+        new package private protected public return static super
+        switch this throw true try typeof var void while with yield"
+
+        you can use commas in the console.log function to include multiple literals or Variables
+
+        loops!!
+        In general, it is a good idea to start counting from 0.
+
+        I love for loops
+
+        Use "break" to get out of a loop
+
+        Using % is an easy wat to test whether a number is divisible by another number
+
+        the "continue" keyword causes the control to jump out of the body of a loop and continue with the next iteration
+
+        <!--comments........-->
+        Chapter 3
+        Pay special attention: array methods
+
+        use the power function to use exponents
+
+        Scopes!
+        global
+        local
+        multi-level scopes within blocks or functions
+
+        functions as values (requires a semi colon after definition)
+        let functionName = function() {}
+        this means you can pass functions as values
+
+        you don't necessarily have to define a function above where you used it in your code. You can define it below.
+
+        Arrow functions (uses the => instead of the function keyword)
+        such as    const power = (base, exponent) => {};
+
+        Parameters of functions!
+        When calling a funtion with only one param but you call it with three, the function executes just fine and uses the first param sent.
+        You can also send less than the defined params. The other params will remain undefined in the function execution.
+
+        A function body can also access the whole list of arguments passed.
+        (like the console.log function)
+
+        You can access the saved value of a local binding from a function despite having left the function.
+        Local values created within functions are created anew with each call.
+
+        Recursion
+        a function can call itself
+        just don't overflow the stack
+
+        
+        Chapter 4
+        Pay attention: concept of callbacks
+
+        it is better practice to use const or let in front of variable declarations instead of var.
+        
+        callbacks
+        functions behave as objects
+        a function that is passed as an argument to another is known as a callback.
+        If the function isn't actually provided as an argument, the code won't work.
+        It is possible to check if an argument is a function:
+            if (typeof(callback) === 'function') {
+                callback();
+            }
+
+        You need to use a callback in sorting arrays of numbers to tell it how the numbers should be compared:
+            [1,3,12,5,23,18,7].sort(); //wrong!!
+
+            function numerically(a,b) {
+                return a-b;
+            }
+
+
+
+        Iterators through arrays
+
+        can use a forEach() function to cycle through each item in an array:
+        myArray.forEach((myArrayItem, index) =>
+            console.log("array item at position ${index} is ${myArrayItem}"));
+
+        or you can use the map() method. it iterates over an array and takes a callback function as a param.
+        the callback function is invoked on each item in the array.
+            [1,2,3].map(square);
+                or
+            [1,2,3].map( x => 2 * x );
+
+        reduce() method iterates an array, but combines each result to return just one value.
+            [1,2,3,4,5].reduce((acc,val) => prev + val);
+
+        filter(). it provides a useful way to find all the truthy values from an array.
+
+        chaining iterators together
+
+
+
+        See the console for code examples.
+    </p>
+
+    <button onclick="window.location.href = '../index.html'">Back to home index</button>
+
+    <script src="notesJs.js"></script>
 </body>
 </html>
