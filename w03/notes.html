@@ -1,15 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sophia Pearson's Portfolio for WDD 330</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Sophia Pearson's Portfolio for WDD 330</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Sophia Pearson's Week 03 Notes</h1>
-<h2>Notes</h2>
-<p>See the console for code examples.</p>
+    <h1>Sophia Pearson's Week 02 Notes</h1>
+    <h2>Notes</h2>
+    <p id = "noteBody">
+        Object Methods: this
 
-<button onclick="window.location.href = '../index.html'">Back to home index</button>
+        Prefer shorter syntax to declare a method 
 
+        // these objects do the same 
+        user = { 
+            sayHi: function() { 
+                alert("Hello"); 
+            } 
+        }; 
+
+        // method shorthand looks better, right? \
+        user = { 
+            sayHi() { // same as "sayHi: function()" 
+                alert("Hello"); 
+            } 
+        };
+
+        The value of "this" is the object "before dot", the one used to call the method.
+
+        In other words, "this" refers to the current object.
+
+        Using this as opposed to the actual object reference avoids code errors.
+
+        ***In Js, "this" behaves differently than most other programming languages. It can be used in any function.
+
+        If you call a function without using an object, "this" within the function is undefined. (If you are in strict
+        In JavaScript this is “free”, its value is evaluated at call-time and does not depend on where the method was declared, 
+        but rather on what object is “before the dot”.
+
+        Arrow functions don't have their own "this."
+        Arrow functions refer to the outer function when using this.
+
+        You can return a literal object when using the return statment within a function.
+
+        Site for array functions: https://gist.github.com/ljharb/58faf1cfcb4e6808f74aae4ef7944cff
+
+        array.forEach(function(currentValue, index, arr), thisValue)
+        the function is required, the value w/in the function is required, index is not required, arr is not required, and thisValue is not required.
+
+        Site for code:
+        https://github.com/scpearson94/wdd330portfolio/tree/master/w03
+
+        See the console for code examples.
+    </p>
+
+    <button onclick="window.location.href = '../index.html'">Back to home index</button>
+
+    <script src="notesJs.js"></script>
 </body>
 </html>
