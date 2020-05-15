@@ -1,15 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sophia Pearson's Portfolio for WDD 330</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Sophia Pearson's Portfolio for WDD 330</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Sophia Pearson's Week 03 Notes</h1>
-<h2>Notes</h2>
-<p>See the console for code examples.</p>
+    <h1>Sophia Pearson's Week 04 Notes</h1>
+    <h2>Notes</h2>
+    <p id = "noteBody">
+        Chapter 8: Forms
 
-<button onclick="window.location.href = '../index.html'">Back to home index</button>
+        Each form control has an initial value that can be specified in the HTML code.
 
+        Forms can also be submitted by pressing enter.
+
+        legacy DOM has a useful property called "document.forms" that returns an HTML collection of all the forms in the document.
+        You need to use the index notation to return the form objects.
+        This is the equivalent of using "const form = document.getElementsByTagname('form')[0];"
+        Instead of using the numerical index, we can use the name attribute to identify a form.
+        const form = document.forms['search'];
+
+        You can also call the elements method that returns an HTML collection of all elements contained in the form.
+        const [input,button] = form.elements;
+
+        Specific elements can be accessed using notation like this:
+        const input = form.searchInput
+        const input = form['searchInput']
+
+        form.submit() can be used to submit the form automatically.
+
+        You can use any of these to submit the form, as well:
+        button type='submit'>Submit  /button>
+        input type='submit' value='Submit'>
+        input type='image' src='button.png'>"
+
+        form.reset() will reset all the form controls back to their initial values specified in the HTML.
+        or a button with a type attribute of reset.
+
+        form.action can be used to set the action attribute of a form so it's sent to a different URL to be processed.
+        form.action = '/an/other.url'
+
+        
+        
+        Site for code:
+        https://github.com/scpearson94/wdd330portfolio/tree/master/w04
+
+        See the console for code examples.
+    </p>
+
+    <button onclick="window.location.href = '../index.html'">Back to home index</button>
+
+    <script src="notesJs.js"></script>
 </body>
 </html>

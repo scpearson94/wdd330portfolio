@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>W04 Team Activity-Sophia</title>
+    <link rel="stylesheet" href="ta-styles.css">
+</head>
+<body>
+
+    <h1>Tic-Tac-Toe</h1>
+
+    <h1 id="chicken_dinner"></h1>
+
+    <table id="board">
+        <tr>
+            <td class="cell diagonalleft"></td>
+            <td class="cell middleup"></td>
+            <td class="cell rightup"></td>
+        </tr>
+        <tr>
+            <td class="cell leftmiddle"></td>
+            <td class="cell middle"></td>
+            <td class="cell rightmiddle"></td>
+        </tr>
+        <tr>
+            <td class="cell leftdown"></td>
+            <td class="cell middledown"></td>
+            <td class="cell rightdown"></td>
+        </tr>
+    </table>
+
+    <button onclick="reset_board()">RESET BOARD</button>
+
+    <script>
+        let player1turn = "X";
+
+        let cells = document.getElementsByClassName("cell");
+
+        function touched() {
+            let touchedCell = this;
+
+            if (player1turn == "X") {
+                //add an x
+                touchedCell.innerHTML = player1turn;
+                win_or_lose(player1turn);
+                player1turn = "O";
+            } else {
+                //add an o
+                touchedCell.innerHTML = player1turn;
+                win_or_lose(player1turn);
+                player1turn = "X";
+            }
+
+        }
+
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].addEventListener('touchend', touched, false);
+        }
+
+        function win_or_lose(letter) {
+            let squares = document.getElementsByClassName("cell");
+            let won = false;
+
+            console.log(squares);
+
+            //check table rows
+            if (squares[0].innerHTML == letter && squares[1].innerHTML == letter && squares[2].innerHTML == letter ) {
+                console.log(squares[0].innerHTML);
+                won = true;
+            }
+
+            else if (squares[3].innerHTML == letter && squares[4].innerHTML == letter && squares[5].innerHTML == letter ) {
+                won = true;
+            }
+
+            else if (squares[6].innerHTML == letter && squares[7].innerHTML == letter && squares[8].innerHTML == letter ) {
+                won = true;
+            }
+
+            //check table columns
+            else if (squares[0].innerHTML == letter && squares[3].innerHTML == letter && squares[6].innerHTML == letter ) {
+                won = true;
+            }
+
+            else if (squares[1].innerHTML == letter && squares[4].innerHTML == letter && squares[7].innerHTML == letter ) {
+                won = true;
+            }
+
+            else if (squares[2].innerHTML == letter && squares[5].innerHTML == letter && squares[8].innerHTML == letter ) {
+                won = true;
+            }
+            //check diagonal
+            else if (squares[0].innerHTML == letter && squares[4].innerHTML == letter && squares[8].innerHTML == letter ) {
+                won = true;
+            }
+
+            else if (squares[6].innerHTML == letter && squares[4].innerHTML == letter && squares[2].innerHTML == letter ) {
+                won = true;
+            }
+
+            else {
+                let unfilled = false;
+
+                for (var i = 0; i < cells.length; i++) {
+                    if (cells[i].innerHTML == "") {
+                        unfilled = true;
+                        break;
+                    } 
+                }
+
+                if (!unfilled) {
+                    document.getElementById("chicken_dinner").innerHTML = "There's a tie :(";
+                }
+            }
+
+            //tie?
+            if (won) {
+                set_chickendinner(letter);
+            }
+        }
+
+        function set_chickendinner(winnerLetter) {
+            let winner = "";
+            if (winnerLetter == "X") { winner = "Player 1"; }
+            else { winner = "Player 2"; }
+
+            console.log(winnerLetter);
+
+            document.getElementById("chicken_dinner").innerHTML = winner + "is the winner!!!!!!";
+        }
+
+        function reset_board() {
+            for (var i = 0; i < cells.length; i++) {
+                cells[i].innerHTML = "";
+            }
+        }
+
+    </script>
+    
+</body>
+</html>

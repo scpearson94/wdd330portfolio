@@ -1,0 +1,45 @@
+html {
+    background-color: lightgrey;
+}
+
+body {
+    font-family: Georgia;
+}
+
+h1 {
+    background-color: cadetblue;
+    padding: 1em;
+}
+
+td {
+    border: 6px solid darkgreen;
+    text-align: center;
+    height: 33.33%;
+    width: 33.33%;
+}
+
+td:first-of-type {
+    border-left-color: transparent;
+    border-top-color: transparent;
+}
+
+td:nth-of-type(2) {
+    border-top-color: transparent;
+}
+
+td:nth-of-type(3) {
+    border-right-color: transparent;
+    border-top-color: transparent;
+}
+
+tr:nth-of-type(3) td {
+    border-bottom-color: transparent;
+}
+
+#board {
+    border-collapse: collapse;
+    width: 500px;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
