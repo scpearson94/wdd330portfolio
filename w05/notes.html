@@ -1,15 +1,206 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sophia Pearson's Portfolio for WDD 330</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Sophia Pearson's Portfolio for WDD 330</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Sophia Pearson's Week 03 Notes</h1>
-<h2>Notes</h2>
-<p>See the console for code examples.</p>
+    <h1>Sophia Pearson's Week 05 Notes</h1>
+    <h2>Notes</h2>
+    <p id = "noteBody">
+        Chapter 10: Testing and Debugging
 
-<button onclick="window.location.href = '../index.html'">Back to home index</button>
+        Errors, Exceptions, and Warnings
 
+        an exception is an error that produdes a return value that can then be used by the program to deal with the error.
+        an exception will also produce a stack trace which is a sequence of functions or method 
+        calls that lead to the point where the error occured. A stack trace works backwards from the point at which the error occurred.
+
+        a warning can occur if there is an error in the code that isn't enough to cause the program to crash.
+        This means the program will continue to run after the warning. This can be problematic.
+
+        Warnings and exceptions are presented differently in different environments.
+        Having the console open is a safe bet.
+
+        You should try to ensure that your program fails loudly when an error occurs so that the problem can be detected sooner.
+        Test your code rigorously.
+
+
+        Strict Mode
+
+        This detects "poor coding style" as actual errors.
+
+        Not using strict mode is often referred to as "sloppy mode."
+
+        Just add the following to the first line of a JS file:
+        'use strict';
+
+        You can even use strict mode on a per function basis.
+
+        The recommended way to invoke strict mode is to place all your JS code into a self-invoking function:
+
+        (function() {
+            'use strict';
+            // All your code would go inside this function
+        }());
+        
+        Linting tools can be used to test the quality of JS code beyond simply using strict mode.
+        This is no guarantee that your code is correct, but it will help to follow conventions.
+        You can add a linting tool as a text-editor plugin.
+
+
+        Feature Detection
+
+        the recommended way to determine browser support is to use feature detection.
+        This is done using an if statement to check whether an object or method exists before trying to actually call the method.
+        Ex:
+        if (window.holoDeck) {
+            virtualReality.activate();
+        }
+
+        The old-school way of checking for browser support was known as browser sniffing.
+
+
+        Debugging in the Browser
+
+        When debugging, it is helpful to add breakpoints.
+
+        The most basic form of debugging is to use alert() as a breakpoint.
+
+        Using the console is another way of debugging.
+        console.trace() will log an interactive stack trace in the console.
+
+        modern browsers allow you to set breakpoints in your code that will pause it at certain points. 
+
+        You can use the "debugger" keyword to pause the execution of the code. 
+        You can also hover over variables to see what values they hold at that point.
+        The program can then be restarted by clicking on the play button.
+        Ex:
+        function amIOldEnough(age){
+            debugger;
+                if (age < 12) {
+                debugger;
+            return 'No, sorry.';
+            } else if (age < 18) {
+                debugger;
+                return 'Only if you are accompanied by an adult.';
+            } else {
+                debugger;
+                return 'Yep, come on in!';
+            }
+        }
+
+        Don't forget to remove the debugger command before shipping any code.
+
+
+        Error Objects
+
+        and error object can be created by the host environment whan an exception occurs 
+        or can be created in the code using a constructor function.
+        
+        const error = new Error();
+        const error = new Error('Oops, something went wrong');
+        
+        There are seven more error objects used for specific errors.
+        EvalError, RangeError, ReferenceError, SyntaxError, TypeError, URIError, InternalError
+        These can also be used as constructors to create custom error objects.
+
+        The properties of error objects consistent across browsers: name, message, stack
+
+        It's also possible to throw your own exceptions using the throw statement. 
+
+        The throw statement can be applied to any JS expression.
+        This will cause the program to hault. It is best practice to throw an error object which can be caught in a catch block:
+
+        throw new Error('Something has gone badly wrong!');
+
+        function squareRoot(number) {
+            'use strict';
+            if (number < 0) {
+                throw new RangeError('You cannot find the square root of negative numbers')
+            }
+            return Math.sqrt(number);
+        };
+        
+        
+        Exception Handling
+
+        try, catch, and finally
+
+        function imaginarySquareRoot(number) {
+            'use strict';
+            try {
+            return String(squareRoot(number));
+            } catch(error) {
+            return squareRoot(-number)+'i';
+            }
+        }
+
+        A finally block can be added after a catch block 
+        which will always be executed after the try or catch block regardless of whether an esception occurred.
+
+
+        Tests
+
+        Like unit tests... these are to test functions are behaving as they should.
+
+        Test-driven development(TDD)
+        1. Write tests (that initially fail)
+        2. Write code to pass the tests
+        3. Refactor the code
+        4. Test refactored code
+        5. Write more tests for new features
+
+        This is often referred to as the "red-green-refactor" cycle of TDD as failing tests usually show up as red, and tests that pass show as green.
+
+        testing frameworks provide a structure to write meaningful tests and then run them. This reading focuses on the Jest framework.
+
+        Terminal:
+        npm install -g jest
+        jest -v (check everything worked)
+
+        navigate to the folder that contains the squareRoot.test.js file and enter this command:
+        jest -c {}
+
+        this will run all files that end in test.js
+
+        the -c is shorthand for configuration. There isn't any extra config needed, so an empty object is passed.
+
+        example test file:
+        test('factors of 12', () => {
+            expect(factorsOf(12)).toEqual([1,2,3,4,6,12]);
+        });
+
+        **.toEqual for arrays, .toBe for singular values
+        Look on Jest's official site for a full list of matcher methods.
+
+        You would usually keep the test and the code in separate files.
+
+        After your tests pass, you need to refactor.
+
+        it('should throw an exception for non-numerical data', () => {
+            expect(factorsOf('twelve').toThrow();
+        });
+        it('should throw an exception for negative numbers', () => {
+            expect(() => factorsOf(-2)).toThrow();
+        });
+        it('should throw an exception for non-integer numbers', () => {
+            expect(() => factorsOf(3.14159)).toThrow();
+        });
+
+
+        Site for code:
+        https://github.com/scpearson94/wdd330portfolio/tree/master/w05
+
+        See the console for code examples.
+    </p>
+
+    <button onclick="window.location.href = '../index.html'">Back to home index</button>
+
+    <script src="notesJs.js"></script>
 </body>
 </html>
