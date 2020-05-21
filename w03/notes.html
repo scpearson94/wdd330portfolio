@@ -52,6 +52,90 @@
         array.forEach(function(currentValue, index, arr), thisValue)
         the function is required, the value w/in the function is required, index is not required, arr is not required, and thisValue is not required.
 
+        Events
+
+        Every time that a user interacts with a web page, an event occurs.
+
+        Event Listeners
+
+        Rather than an approach called blocking where you would have to "check your email every couple of seconds," JS uses a non-blocking approach.
+        This is to use event listeners.
+
+        document.body.addEventListener("click", doSomething);
+
+        Inline event handlers
+
+        The original way of dealing with events...
+        <p onclick="console.log('You Clicked Me!')">Click ➥ Me</p>
+
+        This isn't recommended. 
+
+        Another Older Event Handler
+
+        document.onclick = function (){ console.log('You clicked on ➥ the page!'); }
+
+        This method is an improvement ont he inline handleras it keeps JS out of the markup, but it still has restrictions.
+        Only one function can be used for each event.
+
+
+        If you add an event listener without a node reference, it references the whole page.
+        addEventListener('click', () => alert('You Clicked!'));
+
+        **parentheses are not placed after the function when it's used as the argument to an event listener. Otherwise, the function will actually be called when the event listener is set.
+
+        When an event handler is triggered by an event, the callback function automatically is passed an event object as a parameter.
+
+        function doSomething(event){
+            console.log(event.type);
+        }
+        << click
+
+        **the parameter does not have to be called event.
+
+        The Event Target
+
+        the target property returns a reference to the node that fired the event.
+        function doSomething(event){
+            console.log(event.target);
+        }
+        << p id='click'>Click On Me/p>
+
+        Coordinates of an Event
+        
+        function doSomething(event){
+            console.log(`screen: (${event.screenX},${event.screenY}),
+            ➥ page: (${event.pageX},${event.pageY}), client:
+            ➥ (${event.screenX},${event.screenY})`)
+        }
+
+        addEventListener('keydown', (event) => {
+            if (event.key === 'c' && event.ctrlKey) {
+            console.log('Action canceled!');
+            }
+        });
+
+        Touch Events
+        
+        addEventListener('touchend', () => console.log('Touch ➥ stopped');
+
+
+        Event listeners can be removed...
+
+        p id='once'>A One Time Thing.../p>
+
+        const onceParagraph = document.getElementById('once');
+        onceParagraph.addEventListener('click', remove);
+
+        function remove(event) {
+        console.log('Enjoy this while it lasts!');
+        onceParagraph.style.backgroundColor = 'pink';
+        onceParagraph.removeEventListener('click',remove);
+        }
+
+        Events are said to propogate as they move from one element to another (down the DOM)
+
+        Bubbling is when the event fires on each element.
+
         Site for code:
         https://github.com/scpearson94/wdd330portfolio/tree/master/w03
 
