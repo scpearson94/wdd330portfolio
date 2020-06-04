@@ -1,7 +1,64 @@
-td {
-    border: 1px solid black;
+h1 {
+    text-align: center;
+    padding-top: 5vw;
 }
 
-table {
-    border-collapse: collapse;
+html {
+    background-color: gainsboro;
+}
+
+body {
+    width: 60%;
+    margin:auto;
+    background-color: ghostwhite;
+}
+
+#output {
+    padding-bottom: 10px;
+}
+
+.todoElement {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    height: 25px;
+    padding-top: 5px;
+}
+
+.todoElement:last-child {
+    border-bottom: 1px solid black;
+}
+
+#todoList, #addTask {
+    padding-bottom: 10vw;
+    padding-right: 20vw;
+    padding-left: 20vw;
+}
+
+#taskCount {
+    float: left;
+    width: 35%;
+}
+
+#selectAll, #selectActive, #selectCompleted {
+    float: left;
+}
+
+.tasks {
+    float: left;
+    width: 70%;
+}
+
+.completedTasks {
+    text-decoration: line-through;
+}
+
+.checkBox {
+    float: left;
+    width: 10%;
+}
+
+.taskBtn {
+    float: right;
+    margin-right: 5px;
 }
