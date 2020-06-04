@@ -16,19 +16,6 @@ class toDo {
     }
 }
 
-function getList () {
-    const listJson = localStorage.getItem(listName);
-    if (listJson) {
-        toDoList = JSON.parse(listJson);
-    } else { saveList(); }
-}
-
-function saveList () {
-    const listStr = JSON.stringify(toDoList);
-
-    localStorage.setItem(listName, listStr);
-}
-
 function showList () {
     todoOutput.innerHTML = ""; 
     
@@ -84,45 +71,6 @@ function countActiveTasks () {
     document.getElementById("taskCount").innerHTML = activeTaskCount + " tasks left";
 }
 
-function addNewTask () {
-    const newTask = newTaskInp.value;
-
-    if (newTask) {
-        const newToDo = new toDo(Date.now(), newTask, false);
-        toDoList.push(newToDo);
-        
-        saveList();
-        reloadList();
-    }
-
-}
-
-function completeTask () {
-    const checkedTask = this;
-    const taskId = this.id;
-
-    toDoList.forEach(function(task, index) {
-        if (task.id == taskId) {
-            if (checkedTask.checked) {
-                toDoList[index].completed = true;
-            } else {
-                toDoList[index].completed = false;
-            }
-        }
-    })
-
-    saveList();
-    reloadList();
-}
-
-function removeTask () {
-    const removeTaskIndex = this.id;
-    toDoList.splice(removeTaskIndex, 1);
-
-    saveList();
-    reloadList();
-}
-
 function reloadList () {
     if (activeOption == true && completedOption == false) {
         activeSelector.click();
@@ -133,14 +81,13 @@ function reloadList () {
     }
 }
 
-addTaskBtn.addEventListener('click', this.addNewTask, false);
-
-getList();
+toDoList = getList();
 
 const allSelector = document.getElementById("selectAll");
 const activeSelector = document.getElementById("selectActive");
 const completedSelector = document.getElementById("selectCompleted");
 
+addTaskBtn.addEventListener('click', this.addNewTask, false);
 allSelector.addEventListener('click', showList, false);
 activeSelector.addEventListener('click', showList, false);
 completedSelector.addEventListener('click', showList, false);
@@ -159,5 +106,3 @@ function addTaskListeners () {
         removeTaskBtns[i].addEventListener('click', removeTask, false);
     }
 }
-
-//module.exports = functions;

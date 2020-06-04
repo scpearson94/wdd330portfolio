@@ -9,8 +9,9 @@ html {
 
 body {
     width: 60%;
-    margin:auto;
+    margin: auto;
     background-color: ghostwhite;
+    height: 100%;
 }
 
 #output {
@@ -61,4 +62,10 @@ body {
 .taskBtn {
     float: right;
     margin-right: 5px;
+}
+
+footer {
+    font-size: 0.75rem;
+    padding-left: 15px;
+    padding-bottom: 5px;
 }
