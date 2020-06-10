@@ -2,12 +2,144 @@
 <html>
 <head>
 <title>Sophia Pearson's Portfolio for WDD 330</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Sophia Pearson's Week 03 Notes</h1>
+<h1>Sophia Pearson's Week 07 Notes</h1>
 <h2>Notes</h2>
-<p>See the console for code examples.</p>
+
+<p>
+    Chapter 11: Further Functions
+
+    Function Properties and Methods
+
+    Functions can have properties and methods themselves. 
+    All functions have a length property that returns the number of parameters the function has.
+
+    Call and Apply Methods
+
+    call() method can be used to set the value of this inside a function to an object that is provided as the first argument.
+    Ex:
+    function sayHello(){ 
+        return `Hello, my name is ${ this.name }`; 
+    }
+    const clark = { name: 'Clark' }; 
+    const bruce = { name: 'Bruce' };
+    sayHello.call(clark); << 'Hello, my name is Clarke'
+    sayHello.call(bruce); << 'Hello, my name is Bruce'
+
+    If the function that is called requires any parameters, these will need to be added after the first argument in the call function.
+    Ex:
+    function sayHello(greeting='Hello'){ 
+        return `${ greeting }, my name is ${ this.name }`; 
+    }
+    sayHello.call(clark, 'How do you do'); << 'How do you do, my name is Clark'
+
+    If a function doesn't refer to an object as this in its body, it can still be called using the call() method, but you need to provide null as its first argument.
+
+    apply() method works in the same way, except the arguments of the function are provided as an array even if there is only one argument.
+    Ex:
+    square.apply(null, [4]) << 16
+
+    This can be useful if the data you're using is already in the form of an array, but it is not really needed as you can just use the spread operator can be used to split an array of values into separate parameters.
+
+    These are powerful as they allow generalized functions to be made that are not tied to spcific objects by being methods of that object.
+
+    Custom Properties
+
+    You can add your own custom properties to functions.
+    square.description = 'Squares a number that is provided as an argument'
+
+    Memoization
+
+    AKA result caching
+    Used if a result takes a long time to compute to save time if the same argument is used later.
+
+    function square(x){ 
+        square.cache = square.cache || {}; 
+        if (!square.cache[x]) { 
+            square.cache[x] = x*x; 
+        } 
+        return square.cache[x] 
+    }
+
+    Immediately Invokes Fucntion Expressions
+    or IIFE (pronounced "iffy")
+
+    an anonymous function that, as the name suggests, is invoked as soon as it's defined.
+    This is easily achieved by placing parentheses at the end of the function definition.
+    Ex:
+    (function(){ 
+        const temp = 'World'; 
+        console.log(`Hello ${temp}`); 
+    })(); 
+    << 'Hello World
+
+    Temporary Variables
+
+    There is no way to remove a variable from a scsope once it's been declared.
+    Placing any code that uses the temporary variable inside an IIFE will ensure it's only available while the IIFE is invoked, then it will disappear.
+    Ex: (switching the value of two global variables)
+    let a = 1; 
+    let b = 2;
+    (()=>{
+        const temp = a; 
+        a = b; 
+        b = temp; 
+    })();
+    a; << 2
+    b; << 1
+    console.log(temp); << Error: "temp is not defined" 
+
+    *this technique is not needed to swap the values of two variables as destructuring can be used:
+    let [a,b] = [1,2]; [a,b] = [b,a];
+    a; << 2
+    b; << 1
+
+    Can be used for Initialization Code
+    *though you can also just place the code inside of a block:
+    {
+        const name = 'Peter Parker'; 
+        // This might be obtained from a cookie in reality 
+        const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday', 'Friday','Saturday']; 
+        const date = new Date(),today = days[date.getDay()]; 
+        console.log(`Welcome back ${name}. Today is ${today}`); 
+    } << 'Welcome back Peter Parker. Today is Tuesday'
+
+    Safe Use of Strict Mode
+
+    The recommended way to use strict mode is to place all your code inside an IIFE, like so:
+    (function() { 
+    'use strict';
+    // All your code would go inside this function
+    })();
+
+    Creating Self-contained Code Blocks
+
+    (function() { 
+        // block A const name = 'Block A'; 
+        console.log(`Hello from ${name}`); 
+    }());
+    (function() { 
+        // block B const name = 'Block B'; 
+        console.log(`Hello from ${name}`); 
+    }());
+    <<  Hello from Block A 
+        Hello from Block B
+        
+    The above functions don't interfere with each other even though they both use the variable "name"
+    *again, this can be achieved by separating code into blocks
+
+    Functions that Define and Rewrite Themselves
+
+    
+
+    Site for code:
+    https://github.com/scpearson94/wdd330portfolio/tree/master/w07
+    
+    See the console for code examples.
+</p>
 
 <button onclick="window.location.href = '../index.html'">Back to home index</button>
 
