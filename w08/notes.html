@@ -2,12 +2,131 @@
 <html>
 <head>
 <title>Sophia Pearson's Portfolio for WDD 330</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Sophia Pearson's Week 03 Notes</h1>
+<h1>Sophia Pearson's Week 08 Notes</h1>
 <h2>Notes</h2>
-<p>See the console for code examples.</p>
+
+<p>
+    Chapter 8: Transforms and Transitions
+
+    Forms
+
+    It's possible to process form data on the front end when a form is submitted.
+
+    WAI-ARIA labels
+
+    you shoul create the form and a main.js file to put the JS in. 
+    This can be saved in the same directory as the file with the form in it.
+
+    Accessing Form Elements
+
+    document.forms
+    returns a collection of all the forms in the document in the order they appear in the markup.
+    Even if there is only one form, you still need to use index notation to access the form object.
+
+    You could also use the name attribute to identify a form:
+    name="search"
+    const form = document.forms.search;
+    const form = document.forms['search'];
+
+    A form object also has a method called elements that returns an HTML collection of all the elements contained in the form. 
+    const [input,button] = form.elements;
+    const input = form.searchInput
+    const input = form['searchInput']
+
+    Form Properties and Methods
+
+    use form.submit() to submit the form automatically.
+    a form can be submitted using any of these elements:
+    button type='submit'>Submit/button> 
+    input type='submit' value='Submit'> 
+    input type='image' src='button.png'>
+
+    form.reset() method will reset all the form controls back to their initial values in the HTML
+    or a button with the type attribute of reset (these are considered poor for usability)
+    
+    form.action property can be used to set the action attribute of a form.
+
+    focus event occurs when an element is focused on. In the case of an input element, this is when the cursor is places inside the element.
+    const input = form.elements.searchInput;
+    input.addEventListener('focus', () => alert('focused'), false)
+
+    blur event occurs when the user moves the focus away from the form element.
+
+    change event occurs when the user moves the focus away from the form element after changing it.
+    the blur event fires after the change event
+
+    Submitting a Form
+
+    the most important event is the submit event occuring when the form is submitted.
+    Usually this will send the content of the form to the server to be processed, but we can use JS to intercept the form before it's sent by assing a submit event listener:
+    const form = document.forms['search']; 
+    form.addEventListener ('submit', search, false);
+    function search() { alert(' Form Submitted'); }
+
+    With the submit listener, the event is triggered first and then the form tries to submit.
+
+    To stop the form from being submitted to the URL altogether, use the preventDefault() method.
+    function search(event) { 
+        alert('Form Submitted'); 
+        event.preventDefault(); 
+    }
+
+    Retrieving and Changing Values From a Form
+
+    Use the value property of the element object to retrieve the text inside the field:
+    function search(event) { 
+        alert(`You Searched for: ${input.value}`); 
+        event.preventDefault(); 
+    }
+
+    It's also possible to set the value using JS.
+
+    To remove (or add) the default text in an input element when the user clicks inside it:
+    input.addEventListener('focus', function(){ 
+        if (input.value==='Search Here') { 
+            input.value = '' 
+        } 
+    }, false);
+    input.addEventListener('blur', function(){ 
+        if(input.value === '') { 
+            input.value = 'Search Here'; 
+        } 
+    }, false);
+
+    Similarly, you can use the placeholder attribute in the HTML markup.
+    This has a slightly different effect, though. The placeholder is not actually a value of the input field, so it won't be submitted as the field's value.
+
+    Input Fields
+
+    text is the default type of an input field.
+
+    Password input fields is used to emter passwords or secret information.
+    The characters are concealed as they are entered.
+
+    Checkboxes
+
+    the name attribute should be the same for all related checkbox elements.
+    In JS, you have to loop through the collection of checkboxes to see which are checked and which are not.
+    
+    hero.powers = [...form.powers].filter(box => box.checked).map(box => box.value);
+    this uses the spread operator to turn the node list into an array to allow us to use the filter method
+
+    a checkbox can be set to true using JS.
+    document.forms.hero.powers[0].checked = true;
+
+    Radio Buttons
+
+    
+
+    Site for code:
+    https://github.com/scpearson94/wdd330portfolio/tree/master/w08
+    
+    See the console for code examples.
+</p>
 
 <button onclick="window.location.href = '../index.html'">Back to home index</button>
 
