@@ -52,6 +52,88 @@
 
     Dialogs
 
+    alert(), confirm(), and prompt() are all dialogs.
+
+    alert() will pause the execution of the program and display a message in a dialog box.
+    The message is rovided as an argument to the method. Undefined is always returned.
+
+    confirm() will stop the execution of the program and display a confirmation dialog that shows the message provided as an argument and gives the options OK or Cancel.
+    It returns true if the user clicks OK and false if the user clicks Cancel.
+
+    prompt() method will stop the execution of the program, display a dialog that shows a message provided as an argument and an input field that allows the user to enter.
+    This text is returned as a string when the user clicks OK. If the user clicks Cancel, null is returned.
+
+    This can be used as a final check to see if a user wants to delete a resource. 
+    Most browsers allow users to disable any dialogs from repeatedly appearing, meaning they are not a feature to be relied upon.
+
+    Browser Information
+
+    the navigator object contains information about the browser being used. 
+    Its userAgent property will return information about the browser and operating system beign used:
+    window.navigator.userAgent
+    << "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/602.4.8 (KHTML, like Gecko) Version/10.0.3 Safari/602.4.8"
+
+    Don't rely on this, though, as it can be modified by a user to masquerade as a different browser.
+
+    Window.location property is an object that contains information about the URL of the current page. It contains a number of properties that provide info about the different fragments of the URL.
+    The href property returns the full URL as a string:
+    window.location.href
+    << "https://www.sitepoint.com/premium/books/javascript-novice-to-ninja"
+
+    This property (as well as most others described) is a read/write property, which means it can also be changed by assignment.
+
+    protocol property returns a string describing the protocol used (such as http, https, pop2, ftp etc.).
+    There is a colon (:) at the end of the string.
+
+    host property returns a string describing the domain of the current URL and the port number (often omitted if the default port 80 is used):
+    window.location.host
+    << "www.sitepoint.com"
+
+    hostname property returns a string describing the domain of the current URL:
+    window.location.hostname
+    << "www.sitepoint.com"
+
+    port property returns a string describing the port number, although it will return an empty string if the port is not explicitly stated in the URL:
+    window.location.port
+    << ""
+
+    pathname property returns a string of the path that follows the domain:
+    window.location.pathname
+    << "/premium/books/javascript-novice-to-ninja"
+
+    search property returns a string that starts with a ? followed by the query string parameters. It returns empty if there are no query params:
+    window.location.search
+    << "?q=javascript&limit=24&offset=0&page=1&content_types[]=All&slugs[]=all&states[]=available&amp;order="
+
+    hash property returns a string that starets with a # followed by the fragment identifier. IT returns empty if there is no fragment identifier:
+    window.location.hash
+    << ""
+
+    origin property returns a string that shows the protocol and domain where the current page originated from. This property is read-only.
+    window.location.origin
+    << "https://www.sitepoint.com"
+
+    window.location methods:
+    reload() can be used to force reload of a current page.
+    assign() can be used to load another resource from a URL provided as a param: window.location.assign('https://www.sitepoint.com/')
+    replace() is almost the same as assign() except the current page will not be stored in the session history (so the user will be unable to navigate back to it using the back button)
+    toString() returns a string containing the whole URL
+
+    The Browser History
+
+    window.history property can be used to access info about any previously visited pages in the current browser session.
+
+    window.history.length property shows how many pages have been visited before arriving at the current page.
+
+    window.history.go() can be used to go to a specific page (where 0 is the current page):
+    window.history.go(1); // goes forward 1 page
+    window.history.go(0); // reloads the current page
+    window.history.go(-1); // goes back 1 page
+
+    there are also window.history.forward() and window.history.back() methods that can be used to navigate forward and backwards by one page respectively.
+
+    Controlling Windows
+
     
 
 
