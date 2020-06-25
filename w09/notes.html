@@ -10,6 +10,48 @@
 <h2>Notes</h2>
 
 <p id = "noteBody">
+    Chapter 9: The Window Object
+
+    Any variables that are created in the global scope are actually propertied of the global window object
+    and any functions are methods of it.
+    It represents the browser window that contains a web page.
+
+    The Browser Object Model
+    BOM for short is a collection of properties and methods that contain information about the browser and computer screen.
+    For example, we can find out which browser is being used to view a page (though this is unreliable),
+    the dimensions of the screen it is viewed on, which pages have been visited before the current page, 
+    and creating pop-up windows (though that annoys your user).
+
+    There are a number of properties and methods that are supported by all major browsers.
+    These properties and methods are made available through the window object.
+    Every browser window, tab, popup, frame, and iframe has a window object.
+
+    BOM only makes sense in a browser environment.
+    (Node.js has an object called global instead)
+    If you don't know the name of the global object, you can refer to it using the keyword this in the global scope:
+    // from within the global scope
+    const global = this;
+
+    Going Global
+
+    global variables are variables that are created without using the const, let, or var keywords.
+
+    In general, you should refer to global variables without using the window object.
+    An exception is if you need to check whether a global variable has been defined (the following will throw a refeneceerror if x has not been defined):
+    if (x) {
+        // do something
+    }
+
+    However, if the variable is accessed as a property of the window object, then the code will still work, as window.x will simply return false:
+    if (window.x) {
+        // do something
+    }
+    
+    Some functions are built in global methods (e.g. parseInt() and isNaN()).
+    In ES6, these two were made methods of the Number object.
+
+    Dialogs
+
     
 
 
