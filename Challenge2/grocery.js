@@ -45,33 +45,6 @@ function showList () {
         } else {
             output2.innerHTML += outputStr;
         }
-
-        /*if (this.innerHTML == "Active.") {
-            activeOption = true;
-            completedOption = false;
-            if (notActive == false) {
-                output1.innerHTML += outputStr;
-            }
-            activeSelector.style.border = "1px solid black";
-            completedSelector.style.border = "none";
-            allSelector.style.border = "none";
-        } else if (this.innerHTML == "Completed.") {
-            activeOption = false;
-            completedOption = true;
-            if (notActive == true) {
-                output1.innerHTML += outputStr;
-            }
-            activeSelector.style.border = "none";
-            completedSelector.style.border = "1px solid black";
-            allSelector.style.border = "none";
-        } else {
-            activeOption = true;
-            completedOption = true;
-            output1.innerHTML += outputStr;
-            activeSelector.style.border = "none";
-            completedSelector.style.border = "none";
-            allSelector.style.border = "1px solid black";
-        }*/
     }
     addItemListeners();
     countActiveItems();
