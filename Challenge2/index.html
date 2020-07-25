@@ -3,15 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Grocery Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <h1>Home Grocery Tracker</h1>
-<script src="api.js"></script>
-<script src="grocery.js"></script>
-<script src="https://platform.fatsecret.com/js?key=015ad94ce4374b98b913d34c34bc92b9&auto_load=true"></script>
+    
+    <form>
+        <label for="name">New Grocery Item: </label>
+        <input name="name" id="newItemName">
+        <label for="purchaseDate">Purchase Date: </label>
+        <input type="date" name="purchaseDate" id="purchaseDate">
+        <label for="repurchaseDate">Date to Repurchase: </label>
+        <input type="date" name="repurchaseDate" id="repurchaseDate">
+        <input type="button" id="addItemBtn" value="Add Item">
+    </form>
+
+    <h3>Time to Repurchase</h3>
+    <div id="repurchaseList">
+        <div id="output1"></div>
+        <div><div id="taskCount">items left</div>
+        </div>
+    </div>
+
+    <h3>Recently Purchased</h3>
+    <div id="repurchaseList">
+        <div id="output2"></div>
+        <div><div id="taskCount">items left</div>
+        </div>
+    </div>
+
+    <script src="ls.js"></script>
+    <script src="utilities.js"></script>
+    <script src="grocery.js"></script>
+
+    <footer>
+        <p>Posted by: Sophia Pearson</p>
+        <p>Contact information: <a href="mailto:scpearon94@byui.edu">
+        scpearon94@byui.edu</a>.</p>
+        <p>&copy; 2020</p>
+    </footer>
     
 </body>
 </html>
