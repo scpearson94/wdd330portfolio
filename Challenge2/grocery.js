@@ -7,14 +7,14 @@ const repurchaseDate = document.getElementById('repurchaseDate');
 const addItemBtn = document.getElementById('addItemBtn');
 const output1 = document.getElementById('output1');
 const output2 = document.getElementById('output2');
-let toDoList = [];
+let itemList = [];
 let activeOption = true;
 let completedOption = true;
 
 class Item {
-    constructor (id, content, completed, pDate, rDate) {
+    constructor (id, name, completed, pDate, rDate) {
         this.id = id;
-        this.content = content;
+        this.name = name;
         this.completed = completed;
         this.pDate = new Date(pDate);
         this.rDate = new Date(rDate);
@@ -25,25 +25,22 @@ function showList () {
     output1.innerHTML = ""; 
     output2.innerHTML = "";
     
-    for (let i = 0; i < toDoList.length; i++) {
-        const item = toDoList[i].content;
-        const notActive = toDoList[i].completed;
-        const taskId = toDoList[i].id;
-        const rDate = toDoList[i].rDate;
+    for (let i = 0; i < itemList.length; i++) {
+        const item = itemList[i].name;
+        const notActive = itemList[i].completed;
+        const itemId = itemList[i].id;
+        const rDate = itemList[i].rDate;
         let outputStr = "";
         var today = new Date();
-        var date = new Date(today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate());
         
-        outputStr += '<div class="todoElement"><input type="checkbox" class="checkBox" id="' + taskId + '"';
+        outputStr += '<div class="listElement"><input type="checkbox" class="checkBox" id="' + itemId + '"';
         if (notActive == true) { outputStr += ' checked'; }
-        outputStr += '><div class="tasks';
-        if (notActive == true) { outputStr += ' completedTasks'; }
-        outputStr += '">' + item + '</div><button class="taskBtn" id="' + i + '">X</button></div>';
+        outputStr += '><div class="items';
+        if (notActive == true) { outputStr += ' completedItems'; }
+        outputStr += '">' + item + '</div><button class="itemBtn" id="' + i + '">X</button></div>';
 
-        console.log(today);
-        console.log(rDate);
         //filter
-        if (rDate <= date) {
+        if (rDate <= today) {
             output1.innerHTML += outputStr;
         } else {
             output2.innerHTML += outputStr;
@@ -76,23 +73,22 @@ function showList () {
             allSelector.style.border = "1px solid black";
         }*/
     }
-    addTaskListeners();
-    countActiveTasks();
+    addItemListeners();
+    countActiveItems();
     newItemName.value = "";
     newItemName.focus();
 }
 
-function countActiveTasks () {
-    const activeList = toDoList.filter(toDoItem => toDoItem.completed == false);
-    const activeTaskCount = activeList.length;
-    document.getElementById("taskCount").innerHTML = activeTaskCount + " tasks left";
+function countActiveItems () {
+    const repurchaseList = itemList.filter(item => item.rDate <= new Date());
+    const reItemCount = repurchaseList.length;
+    const toPurchaseList = itemList.filter(item => item.rDate > new Date());
+    const toItemCount = toPurchaseList.length;
+    document.getElementById("itemCount1").innerHTML = reItemCount + " items";
+    document.getElementById("itemCount2").innerHTML = toItemCount + " items";
 }
 
-function reloadList () {
-    showList();
-}
-
-toDoList = getList();
+itemList = getList();
 
 const allSelector = document.getElementById("selectAll");
 const activeSelector = document.getElementById("selectActive");
@@ -102,15 +98,15 @@ addItemBtn.addEventListener('click', this.addNewItem, false);
 
 showList();
 
-function addTaskListeners () {
-    const taskBoxes = document.getElementsByClassName("checkBox");
-    const removeTaskBtns = document.getElementsByClassName("taskBtn");
+function addItemListeners () {
+    const itemBoxes = document.getElementsByClassName("checkBox");
+    const removeitemBtns = document.getElementsByClassName("itemBtn");
 
-    for (var i = 0; i < taskBoxes.length; i++) {
-        taskBoxes[i].addEventListener('click', completeTask, false);
+    for (var i = 0; i < itemBoxes.length; i++) {
+        itemBoxes[i].addEventListener('click', completeItem, false);
     }
 
-    for (var i = 0; i < removeTaskBtns.length; i++) {
-        removeTaskBtns[i].addEventListener('click', removeItem, false);
+    for (var i = 0; i < removeitemBtns.length; i++) {
+        removeitemBtns[i].addEventListener('click', removeItem, false);
     }
 }

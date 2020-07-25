@@ -13,26 +13,29 @@
     <form>
         <label for="name">New Grocery Item: </label>
         <input name="name" id="newItemName">
+        <section></section>
         <label for="purchaseDate">Purchase Date: </label>
         <input type="date" name="purchaseDate" id="purchaseDate">
+        <section></section>
         <label for="repurchaseDate">Date to Repurchase: </label>
         <input type="date" name="repurchaseDate" id="repurchaseDate">
+        <section></section>
         <input type="button" id="addItemBtn" value="Add Item">
     </form>
 
-    <h3>Time to Repurchase</h3>
     <div id="repurchaseList">
+    <h3>Time to Repurchase</h3>
         <div id="output1"></div>
-        <div><div id="taskCount">items left</div>
-        </div>
+        <div id="itemCount1">items</div>
     </div>
 
-    <h3>Recently Purchased</h3>
     <div id="repurchaseList">
+    <h3>Recently Purchased</h3>
         <div id="output2"></div>
-        <div><div id="taskCount">items left</div>
-        </div>
+        <div id="itemCount2">items</div>
     </div>
+
+    <p id="clear"></p>
 
     <script src="ls.js"></script>
     <script src="utilities.js"></script>

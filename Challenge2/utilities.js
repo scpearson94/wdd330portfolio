@@ -2,43 +2,43 @@
 
 function addNewItem () {
     const itemName = newItemName.value;
-    const pDate = purchaseDate.value;
-    const rDate = repurchaseDate.value;
+    const pDate = new Date(purchaseDate.value);
+    const rDate = new Date(repurchaseDate.value);
 
     if (itemName && pDate && rDate) {
         if (pDate < rDate) {
             const newItem = new Item(Date.now(), itemName, false, pDate, rDate);
-            toDoList.push(newItem);
+            itemList.push(newItem);
             
-            saveList(toDoList);
-            reloadList();
+            saveList(itemList);
+            showList();
         }
     }
 
 }
 
-function completeTask () {
-    const checkedTask = this;
-    const taskId = this.id;
+function completeItem () {
+    const checkedItem = this;
+    const itemId = this.id;
 
-    toDoList.forEach(function(task, index) {
-        if (task.id == taskId) {
-            if (checkedTask.checked) {
-                toDoList[index].completed = true;
+    itemList.forEach(function(item, index) {
+        if (item.id == itemId) {
+            if (checkedItem.checked) {
+                itemList[index].completed = true;
             } else {
-                toDoList[index].completed = false;
+                itemList[index].completed = false;
             }
         }
     })
 
-    saveList(toDoList);
-    reloadList();
+    saveList(itemList);
+    showList();
 }
 
 function removeItem () {
     const removeItemIndex = this.id;
-    toDoList.splice(removeItemIndex, 1);
+    itemList.splice(removeItemIndex, 1);
 
-    saveList(toDoList);
-    reloadList();
+    saveList(itemList);
+    showList();
 }
