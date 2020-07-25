@@ -134,7 +134,133 @@
 
     Controlling Windows
 
+    window.open() opens a new window and takes the URL of the page to be opened as its first param, the window title as its second param, and a list of attributre as the third param. 
+    This can also be assigned to a variable so the window can then be referenced later in the code:
+    const popup = window.open('https://sitepoint.com','SitePoint','width=400,height=400,resizable=yes');
+
+    close() closes a window assuming you have a reference to it:
+    popup.close();
+
+    window.moveTo() moves a window and takes two params that are the X and Y coordinates of the screen that the window is to be moved to.
+    window.moveTo(0,0); // will move the window to the top-left corner of the screen
+
+    resize() resizes a window and takes two params that specify the width and height of the resized window:
+    window.resizeTo(600,400);
+
+    These methods are seen as annoying... and give JS a bad name. Many of them can be blocked by a browser given certain conditions.
+
+    Screen Information
+
+    window.screen object contains information about the screen the browser is displayed on.
+    You can find out the height and width of the screen in pixels using the height and width properties.
+
+    availHeight and availWidth can be used to find the height and width of the screen (excluding any operating system menus).
+
+    colorDepth can be used to find the color bit depth of the users monitor (though there are few cases for doing this other than statistics).
+
+    the screen object has more uses for mobile devices. It allows you to do things like turn off the device's screen, detect a change in its orientation or lock it in a specific orientation.
+
+    media queries and feature detection are often better practices.
+
+    The Document Object
+
+    properties and methods that deal with the hpage that has been loaded into the window.
+
+    Chapter 6 covers DOM.
+
+    document.write() simply writes a string of text to the page. If the page has already loaded, it will completely replace the current document.
+    It is possible to include HTML in the string passed to write().
+    It can be used inside script tags to inject a string into the markup. This will not overwrite the rest of the HTML.
+    The use of write() is heavily frowned upon. There are some extremely rare legitimate uses of it.
+
+    Cookies
+
+    These can be used to store information that can then be retrieved between requests.
     
+    They can only be read by a web page from the same domain that set them.
+    This is to stop sites being able to access information about users.
+
+    They are also limited to storing up to 4KB of data, although 20 cookies are allowed per domain which can add up.
+
+    Cookies can be used for personalizing a user's browsing experience, storign user preferences, keeping track of user choices (such as shopping cart), authentication, and tracking users.
+    The use of cookies for trackingn has been much maligned in recent years.
+    The use for data storage is starting to be replaced in many cases by the new HTML5 localStorage API as it allows more data to be stored (Chapter 14).
+
+    They are still used for retaining state information (like if a user is logged in) because they're passed between client and server on every HTTP request.
+
+    Cookies take the form of a text file that contain a list of name/value pairs separated by semicolons:
+    "name=Superman; hero=true; city=Metropolis"
+
+    It may be a good idea to ask for permission to set cookies.
+
+    Creating Cookies
+
+    document.cookie = 'name=Superman';
+    << "name=Superman"
+
+    the document.cookie property acts like a special type of string.
+    Assigning another cookies won't overwrite the entire property, it will just append it to the end of the string.
+
+    Changing cookie values
+
+    a cookie's value can be changed by using the same name but a different value:
+    document.cookie = 'name=Batman'
+    << "name=Batman"
+    document.cookie = 'city=Gotham'
+    << "city=Gotham"
+
+    Reading Cookies
+
+    to see the current contents of the cookie jar, simply enter document.cookie:
+    document.cookie:
+    << "name=Batman; hero=true; city=Gotham"
+
+    We can use the split method to break the string into an array containing each name/value pair, then use a for loop to iterate through the array.
+    const cookies = document.cookie.split("; ");
+    for (crumb of cookies){
+    const [key,value] = crumb.split("=");
+    console.log(`The value of ${key} is ${value}`);
+    }
+    << The value of name is Batman
+    The value of hero is true
+    The value of city is Gotham
+
+    To see an example of cookies used int he wild, you can visit almost an website, open the browser console, and type document.cookie.
+
+    Cookie Expiry Dates
+
+    Cookies are session cookies by default. This means they are deleted once a browser session is finished.
+    They can be made persistent by adding "; espires=date" to the end of the cookie when it's set, where the date is a date value in the UTC String format Day, DD-Mon-YYYY HH:MM:SS GMT. This expires in one day:
+    const expiryDate = new Date();
+    const tomorrow = expiryDate.getTime() + 1000 * 60 * 60 * 24;
+    expiryDate.setTime(tomorrow);
+    document.cookie = `name=Batman; expires=${expiryDate.toUTCString()}`;
+
+    an alternative is to set the max-age value:
+    document.cookie = 'name=Batman; max-age=86400' // 86400 secs = 1 day
+
+    Don't rely on cookie expiry for apps that contain sensitive information. Browsers can sometimes hold on to the information stored in a cookie that should have expired when the 'session restore' feature is used after a crash.
+
+    The Path and Domain of Cookies
+
+    By default, cookies can only be read by pages inside the same directory and domain as the file was set.
+    The path can be changed so that any page in the root directory can read the cookie:
+    document.cookie = 'name=Batman; path=/';
+
+    It's also possible to set the domain:
+    document.cookie = 'name=Batman; domain=sitepoint.com';
+    
+    Doing this will allow subdomains to read the cookie.
+
+    Secure Cookies
+
+
+
+    Chapter 14: HTML5 APIs
+
+
+    Modern Front End Development Workflow (reading): https://byui-cit.github.io/cit261/resources/workflow.html
+
 
 
     Site for code:
